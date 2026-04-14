@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Analytics } from "@vercel/analytics/next";
+// import { Analytics } from "@vercel/analytics/next";
 
 import { SiteShell } from "@/components/sections/site-shell";
 
@@ -80,7 +80,7 @@ export default function RootLayout({
     <html lang="en" className={`${testSohneFett.variable} ${testSohneBuch.variable}`} style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
       <body>
         <SiteShell>{children}</SiteShell>
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );
