@@ -173,7 +173,7 @@ export function EditorialHero() {
 
   return (
     <section
-      className={`relative h-[100svh] overflow-hidden pb-3 pl-0 pr-3 pt-0 transition-colors duration-500 md:pb-4 md:pl-0 md:pr-4 ${
+      className={`relative h-[100svh] overflow-hidden pb-3 pl-0 md:pr-3 pt-0 transition-colors duration-500 md:pb-4 md:pl-0 pr-0 ${
         aiHoverActive ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -216,10 +216,13 @@ export function EditorialHero() {
                     if (!canHover) return;
                     setHoveredSlug(project.slug);
                     setHoveredAiLabel(null);
+                    focusProject(project.slug);
+                    document.body.style.backgroundColor = "black"; // Safari fix
                   }}
                   onMouseLeave={() => {
                     if (!canHover) return;
                     setHoveredSlug(null);
+                    document.body.style.backgroundColor = ""; // Reset background
                   }}
                   className={`group relative block h-[108svh] overflow-hidden bg-[#f3f3f3] transition-[opacity,transform] duration-700 ease-out first:mt-0 ${
                     index === 0 ? "" : "mt-3"
@@ -232,7 +235,7 @@ export function EditorialHero() {
                       fallbackSrc={project.fallbackImage}
                       primarySrc={project.previewImage}
                       preferImage={project.preferImagePreview}
-                      className="absolute inset-0 h-full w-full"
+                      className="absolute inset-0 h-auto w-full"
                     />
                   </div>
                 </Link>

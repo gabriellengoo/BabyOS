@@ -6,11 +6,6 @@ import { SiteShell } from "@/components/sections/site-shell";
 
 import "./globals.css";
 
-const univers = localFont({
-  src: "../public/fonts/UniversNextPro-Regular.woff2",
-  variable: "--font-univers"
-});
-
 const testSohneFett = localFont({
   src: "../public/fonts/TestSohne-Fett.otf",
   variable: "--font-test-sohne-fett"
@@ -82,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${univers.variable} ${testSohneFett.variable} ${testSohneBuch.variable}`}>
+    <html lang="en" className={`${testSohneFett.variable} ${testSohneBuch.variable}`} style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
       <body>
         <SiteShell>{children}</SiteShell>
         <Analytics />

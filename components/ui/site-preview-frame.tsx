@@ -190,7 +190,7 @@ export function SitePreviewFrame({
         <iframe
           src={siteUrl}
           title={`${title} live preview`}
-          loading="eager"
+          loading="lazy" // Added lazy loading for optimization
           referrerPolicy="no-referrer-when-downgrade"
           className="pointer-events-none absolute inset-0 h-full w-full border-0"
           onLoad={() => {

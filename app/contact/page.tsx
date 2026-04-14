@@ -88,7 +88,7 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="pt-0 md:pt-10">
-          <p className="nav-babyos-text mb-3 font-test-sohne-fett text-[clamp(30px,10vw,70px)] font-black leading-[0.98] tracking-[-0.08em] md:hidden">
+          <p className="nav-babyos-text mb-3 font-test-sohne-fett text-[clamp(40px,12vw,80px)] font-black leading-[0.98] tracking-[-0.08em] md:hidden">
             BabyOS is typeing..
           </p>
           <p className="type-small max-w-[42ch] font-strong text-pink-500 pb-[1vw]">

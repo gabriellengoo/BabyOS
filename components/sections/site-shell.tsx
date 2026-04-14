@@ -48,11 +48,11 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className={homePage ? "relative h-[100svh] overflow-hidden" : "relative min-h-screen"}>
+    <div className={homePage ? "relative h-[100svh] w-screen overflow-hidden" : "relative min-h-screen"}>
       {!reduceMotion && !skipLoader ? <HomeIntroTransition transitionKey={pathname} /> : null}
       <div
         className={`relative flex flex-col transition duration-700 ${
-          homePage ? "h-[100svh] overflow-hidden" : "min-h-screen"
+          homePage ? "h-[100svh] w-screen overflow-hidden" : "min-h-screen"
         } ${aiOpen ? "page-obscured" : ""}`}
       >
         {homePage ? null : <SiteHeader />}

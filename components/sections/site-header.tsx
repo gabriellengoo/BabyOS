@@ -23,7 +23,7 @@ export function SiteHeader() {
                 <br />
                 operating worldwide.
               </div>
-              <p className="nav-babyos-text font-test-sohne-fett text-[0.84rem] font-black leading-none tracking-[-0.08em] md:ml-[27vw] md:text-[1rem]">
+              <p className="nav-babyos-text font-test-sohne-fett text-[1.2rem] font-black leading-none tracking-[-0.08em] md:ml-[27vw] md:text-[1rem]">
                 <span className="md:hidden">BabyOS</span>
                 <span className="hidden md:inline">BabyOS is typeing..</span>
               </p>

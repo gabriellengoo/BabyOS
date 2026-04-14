@@ -188,6 +188,7 @@ export function WorkFilter({
                     title={`${video.title} preview`}
                     allow="autoplay; fullscreen; picture-in-picture"
                     className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.22] border-0"
+                    loading="lazy" // Added lazy loading for optimization
                   />
                 </div>
                 <div className="grid min-w-0 gap-0 [line-height:0.82!important]">

@@ -139,6 +139,8 @@ img {
 }
 
 .nav-babyos-text {
+  font-size: 1.2rem; /* Adjusted for larger text on mobile */
+  text-align: center; /* Center align text */
   color: #ff1493;
   animation: nav-babyos-color-cycle 14s ease-in-out infinite;
 }
@@ -183,8 +185,13 @@ img {
 .surface-blur {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(4px);
-  background-color: #b5b5b533;
+  background-color: rgba(181, 181, 181, 0.2); /* Ensure fallback is consistent */
   border-radius: 4px;
+  /* Safari-specific fallback using pixelation */
+  @supports not (-webkit-backdrop-filter: none) {
+    background-image: url('/path-to-pixelated-image.png');
+    background-size: cover;
+  }
 }
 
 .page-obscured {
