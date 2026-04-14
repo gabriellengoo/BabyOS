@@ -18,7 +18,7 @@ type LenisScrollProps = {
 const defaultOptions: LenisOptions = {
   duration: 1.1,
   smoothWheel: true,
-  syncTouch: false,
+  syncTouch: true,
   wheelMultiplier: 0.9,
   touchMultiplier: 1
 };

@@ -49,20 +49,17 @@ const stackItems = [
 
 export default function ContactPage() {
   return (
-    <section className="px-3 pb-14 pt-[50px] md:px-4 md:pt-[56px]">
-      <div className="flex flex-col justify-start gap-6 pt-2 md:min-h-[calc(100svh-56px)] md:justify-between md:gap-0 md:pt-4">
+    <section className="px-3 pb-14 pt-[21vw] md:px-4 md:pt-[3.5vw]">
+      <div className="flex flex-col justify-start gap-6 pt-0 md:min-h-[calc(100svh-3.5vw)] md:justify-between md:gap-0 md:pt-4">
         <div className="grid gap-4 text-left md:gap-8 md:grid-cols-[minmax(0,1fr)_minmax(240px,28vw)] md:items-start">
           <div className="grid gap-2 md:gap-3">
-            <p className="hidden nav-babyos-text font-test-sohne-fett text-[clamp(30px,10vw,70px)] font-black leading-[0.98] tracking-[-0.08em] md:block">
-              BabyOS is typeing..
-            </p>
             {links.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                className="font-test-sohne-buch text-[clamp(13px,3vw,30px)] uppercase leading-[0.98] tracking-[0.01em] transition-opacity duration-500 md:hover:opacity-5"
+                className="font-test-sohne-buch text-[3.333vw] uppercase leading-[0.98] tracking-[0.033vw] transition-opacity duration-500 md:text-[1.875vw] md:tracking-[0.019vw] md:hover:opacity-5"
               >
                 {link.value}
               </Link>
@@ -75,6 +72,12 @@ export default function ContactPage() {
             >
               Download CV
             </Link>
+            <p className="nav-babyos-text nav-babyos-text-secondary block w-full pt-[3vw] text-left font-test-sohne-fett text-[18vw] font-black leading-[0.92] tracking-[-1.44vw] md:hidden">
+              BabyOS is typeing..
+            </p>
+            <p className="hidden nav-babyos-text nav-babyos-text-secondary w-full pt-[1.25vw] text-left font-test-sohne-fett text-[7vw] font-black leading-[0.92] tracking-[-0.56vw] md:block">
+              BabyOS is typeing..
+            </p>
           </div>
           <div className="hidden content-start gap-4 md:grid md:justify-items-end">
             <Link
@@ -88,9 +91,6 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="pt-0 md:pt-10">
-          <p className="nav-babyos-text mb-3 font-test-sohne-fett text-[clamp(40px,12vw,80px)] font-black leading-[0.98] tracking-[-0.08em] md:hidden">
-            BabyOS is typeing..
-          </p>
           <p className="type-small max-w-[42ch] font-strong text-pink-500 pb-[1vw]">
             {aiPromoText}
           </p>
@@ -148,7 +148,7 @@ export default function ContactPage() {
             <p className="type-small max-w-[28ch] font-strong">{focusText}</p>
           </div>
           <div className="grid content-start gap-6">
-            <p className="mb-[-0.75rem] type-small font-strong uppercase text-black/45 md:hidden">Further Information</p>
+            <p className="mb-[-3.077vw] type-small font-strong uppercase text-black/45 md:hidden">Further Information</p>
             <div className="grid gap-1">
               {furtherInformation.map((item) => (
                 <p key={item} className="type-small font-strong">

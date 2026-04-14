@@ -21,7 +21,7 @@ function AiVideoPanel({
         title={`AI video ${index + 1}`}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        className="pointer-events-none absolute inset-y-0 left-[-1px] h-full w-[calc(100%+2px)] border-0"
+        className="pointer-events-none absolute inset-y-0 left-[-0.063vw] h-full w-[calc(100%+0.125vw)] border-0"
         onLoad={() => setLoaded(true)}
       />
       {!loaded ? (

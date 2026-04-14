@@ -90,7 +90,7 @@ export function WorkFilter({
   }, []);
 
   return (
-    <section className="h-[100svh] min-h-[100svh] overflow-hidden px-3 pb-14 pt-[50px] md:h-[calc(100svh-56px)] md:min-h-0 md:px-2 md:pb-0 md:pt-[56px]">
+    <section className="h-[100svh] min-h-[100svh] overflow-hidden px-3 pb-0 pt-[21vw] md:h-[calc(100svh-3.5vw)] md:min-h-0 md:px-2 md:pb-0 md:pt-[3.5vw]">
       <div className="grid h-full min-h-0 min-w-0 gap-8 md:grid-cols-[minmax(220px,27vw)_minmax(0,1fr)] md:items-stretch md:gap-3">
         <div className="flex flex-col gap-4 md:h-full md:pr-4">
           <div className="space-y-4">
@@ -139,7 +139,7 @@ export function WorkFilter({
                   !canHover || hoveredItemId == null || hoveredItemId === project.slug ? "opacity-100" : "opacity-[0.2]"
                 }`}
               >
-                <div className="pointer-events-none relative h-[54px] overflow-hidden">
+                <div className="pointer-events-none relative h-[13.846vw] overflow-hidden md:h-[3.375vw]">
                   <ProjectImage
                     alt={`${project.title} thumbnail`}
                     fallbackSrc={project.fallbackImage}
@@ -178,25 +178,25 @@ export function WorkFilter({
                 }}
                 onFocus={() => setHoveredItemId(video.id)}
                 onBlur={() => setHoveredItemId(null)}
-                className={`grid min-w-0 max-w-full grid-cols-[96px_minmax(0,1fr)] gap-3 pb-4 transition-opacity duration-500 ${
+                className={`grid min-w-0 max-w-full grid-cols-[24.615vw_minmax(0,1fr)] gap-3 pb-4 transition-opacity duration-500 md:grid-cols-[6vw_minmax(0,1fr)] ${
                   !canHover || hoveredItemId == null || hoveredItemId === video.id ? "opacity-100" : "opacity-[0.2]"
                 }`}
               >
-                <div className="pointer-events-none relative h-[54px] w-[96px] overflow-hidden bg-black">
+                <div className="pointer-events-none relative h-[13.846vw] w-full overflow-hidden md:h-[3.375vw]">
                   <iframe
                     src={video.embedUrl}
                     title={`${video.title} preview`}
                     allow="autoplay; fullscreen; picture-in-picture"
-                    className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.22] border-0"
-                    loading="lazy" // Added lazy loading for optimization
+                    className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.28] border-0"
+                    loading="lazy"
                   />
                 </div>
                 <div className="grid min-w-0 gap-0 [line-height:0.82!important]">
                   <div className="flex items-center justify-between gap-3">
-                    <p className="m-0 min-w-0 break-words type-fine font-bold [line-height:0.82!important] text-black">{video.title}</p>
-                    <p className="m-0 type-fine [line-height:0.82!important] text-black">Video</p>
+                    <p className="m-0 min-w-0 break-words type-small font-strong [line-height:0.82!important] text-black">{video.title}</p>
+                    <p className="m-0 type-small font-strong [line-height:0.82!important] text-black">Video</p>
                   </div>
-                  <p className="m-0 min-w-0 break-words type-small [line-height:0.82!important] text-black">AI moving-image study</p>
+                  <p className="m-0 min-w-0 break-words type-small font-strong [line-height:0.82!important] text-black/25">AI moving-image study</p>
                 </div>
               </a>
             </RevealItem>

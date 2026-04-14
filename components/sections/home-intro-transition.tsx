@@ -99,7 +99,7 @@ export function HomeIntroTransition({
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reduceMotion ? 0.01 : 0.55, delay: reduceMotion ? 0 : 0.08 }}
-        className="whitespace-nowrap font-test-sohne-fett text-[clamp(18px,4.8vw,88px)] font-black leading-[0.92] tracking-[-0.08em]"
+        className="whitespace-nowrap font-test-sohne-fett text-[6.4vw] font-black leading-[0.92] tracking-[-0.512vw] md:text-[4.8vw] md:tracking-[-0.384vw]"
       >
         {displayText}
       </motion.p>

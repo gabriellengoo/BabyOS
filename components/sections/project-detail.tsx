@@ -7,9 +7,9 @@ export function ProjectDetail({ project }: { project: Project }) {
   const adjacent = getAdjacentProjects(project.slug);
 
   return (
-    <article className="min-h-[100svh] px-3 pb-14 pt-[50px] md:min-h-[calc(100svh-56px)] md:px-4 md:pt-[56px]">
-      <div className="grid min-h-[calc(100svh-50px)] gap-4 md:min-h-[calc(100svh-56px)] md:grid-cols-[360px_minmax(0,1fr)]">
-        <div className="flex min-h-0 flex-col gap-4 border-r border-black/10 pr-4">
+    <article className="min-h-[100svh] pl-0 pr-0 pb-14 pt-[12.821vw] md:min-h-[calc(100svh-3.5vw)] md:px-4 md:pt-[3.5vw]">
+      <div className="grid min-h-[calc(100svh-12.821vw)] gap-4 md:min-h-[calc(100svh-3.5vw)] md:grid-cols-[22.5vw_minmax(0,1fr)]">
+        <div className="flex min-h-0 flex-col gap-4 px-3 md:border-r md:border-black/10 md:px-0 md:pr-4">
           <div className="space-y-3">
             <p className="type-small text-black/45">{project.category}</p>
             <p className="type-small">{project.title}</p>
@@ -56,14 +56,14 @@ export function ProjectDetail({ project }: { project: Project }) {
             </div>
           </div>
         </div>
-        <div className="flex min-h-0 flex-col gap-3">
-          <div className="relative min-h-0 flex-1 overflow-hidden">
+        <div className="order-first flex min-h-0 flex-col gap-3 md:order-none">
+          <div className="relative aspect-[100/128] overflow-hidden md:min-h-0 md:flex-1 md:aspect-auto">
             <SitePreviewFrame
               title={project.title}
               siteUrl={project.siteUrl}
               fallbackSrc={project.fallbackImage}
               primarySrc={project.previewImage}
-              className="h-full w-full"
+              className="absolute inset-0 h-full w-full"
             />
           </div>
           <nav className="mt-auto grid gap-2 md:grid-cols-2">

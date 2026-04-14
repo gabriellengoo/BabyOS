@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/reveal";
 export function CapabilitiesPreview() {
   return (
     <section className="px-5 py-12 md:px-8">
-      <div className="mx-auto max-w-[1600px] border-t border-black/10 pt-6">
+      <div className="mx-auto max-w-[100vw] border-t border-black/10 pt-6">
         <Reveal className="grid gap-8 md:grid-cols-2">
           <div className="space-y-4">
             <p className="type-fine text-black/45">Capabilities</p>

@@ -11,22 +11,22 @@
   --max-container-width: 968px;
   --container-width: 100vw;
   --container-height: 100vh;
-  --rem: calc(1 / var(--context) * var(--container-width));
-  --remVert: calc(1 / var(--context-vert) * var(--container-height));
   --margin: calc(20 / var(--context) * var(--container-width));
   --gutter: calc(20 / var(--context) * var(--container-width));
   --body-large-font-size: calc(15 / var(--context) * var(--container-width));
-  --body-large-line-height: 1.3em;
-  --body-large-letter-spacing: 0em;
+  --body-large-line-height: 1.3;
+  --body-large-letter-spacing: 0vw;
   --body-large-base-font-size: calc(15 / var(--context) * var(--container-width));
-  --body-large-base-line-height: 1.3em;
-  --body-large-base-letter-spacing: 0em;
+  --body-large-base-line-height: 1.3;
+  --body-large-base-letter-spacing: 0vw;
   --body-normal-font-size: calc(13 / var(--context) * var(--container-width));
-  --body-normal-line-height: 1.3em;
-  --body-normal-letter-spacing: 0em;
-  --body-normal-base-font-size: min(calc(14 / var(--context) * var(--container-width)), 14px);
-  --body-normal-base-line-height: 1.3em;
-  --body-normal-base-letter-spacing: 0em;
+  --body-normal-line-height: 1.3;
+  --body-normal-letter-spacing: 0vw;
+  --body-normal-base-font-size: calc(14 / var(--context) * var(--container-width));
+  --body-normal-base-line-height: 1.3;
+  --body-normal-base-letter-spacing: 0vw;
+  --nav-babyos-font-size: calc(37.2 / 390 * 100vw);
+  --nav-babyos-letter-spacing: calc(-1.536 / 390 * 100vw);
 }
 
 * {
@@ -113,10 +113,10 @@ img {
   :root {
     --context: 390;
     --context-vert: 844;
-    --body-large-font-size: min(calc(15 / var(--context) * var(--container-width)), 17px);
-    --body-large-base-font-size: min(calc(15 / var(--context) * var(--container-width)), 17px);
-    --body-normal-font-size: min(calc(13 / var(--context) * var(--container-width)), 14px);
-    --body-normal-base-font-size: min(calc(13 / var(--context) * var(--container-width)), 13px);
+    --body-large-font-size: calc(15 / var(--context) * var(--container-width));
+    --body-large-base-font-size: calc(15 / var(--context) * var(--container-width));
+    --body-normal-font-size: calc(13 / var(--context) * var(--container-width));
+    --body-normal-base-font-size: calc(13 / var(--context) * var(--container-width));
   }
 }
 
@@ -139,10 +139,40 @@ img {
 }
 
 .nav-babyos-text {
-  font-size: 1.2rem; /* Adjusted for larger text on mobile */
-  text-align: center; /* Center align text */
+  font-size: var(--nav-babyos-font-size);
+  letter-spacing: var(--nav-babyos-letter-spacing);
+  text-align: left;
   color: #ff1493;
   animation: nav-babyos-color-cycle 14s ease-in-out infinite;
+}
+
+.nav-babyos-text-secondary {
+  text-align: left;
+}
+
+.nav-babyos-text-home {
+  text-align: right;
+  font-size: 7vw;
+}
+
+@media (min-width: 901px) {
+  :root {
+    --nav-babyos-font-size: 7vw;
+    --nav-babyos-letter-spacing: -0.08vw;
+  }
+
+  .nav-babyos-text-home {
+    font-size: 8.5vw;
+    letter-spacing: -0.1vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-babyos-text-secondary {
+    font-size: 10vw;
+    letter-spacing: -0.8vw;
+    width: 100%;
+  }
 }
 
 @keyframes nav-babyos-color-cycle {

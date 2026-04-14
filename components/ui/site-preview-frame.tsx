@@ -10,6 +10,8 @@ type SitePreviewFrameProps = {
   fallbackSrc: string;
   primarySrc: string;
   preferImage?: boolean;
+  preferImageOnMobile?: boolean;
+  coverImageOnMobile?: boolean;
   className?: string;
 };
 
@@ -146,17 +148,31 @@ export function SitePreviewFrame({
   fallbackSrc,
   primarySrc,
   preferImage = false,
+  preferImageOnMobile = true,
+  coverImageOnMobile = false,
   className
 }: SitePreviewFrameProps) {
   const [mode, setMode] = useState<"loading" | "iframe" | "image">("loading");
   const [fallbackVisible, setFallbackVisible] = useState(preferImage);
   const [fallbackLoaded, setFallbackLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const shouldPreferImage = preferImage || (preferImageOnMobile && isMobile);
+
     setFallbackLoaded(false);
 
-    if (preferImage) {
+    if (shouldPreferImage) {
       setFallbackVisible(true);
       setMode("loading");
       return;
@@ -176,7 +192,7 @@ export function SitePreviewFrame({
         window.clearTimeout(timeoutRef.current);
       }
     };
-  }, [preferImage, siteUrl]);
+  }, [isMobile, preferImage, preferImageOnMobile, siteUrl]);
 
   useEffect(() => {
     if (fallbackVisible && fallbackLoaded) {
@@ -186,7 +202,7 @@ export function SitePreviewFrame({
 
   return (
     <div className={className}>
-      {!preferImage && mode !== "image" ? (
+      {!(preferImage || (preferImageOnMobile && isMobile)) && mode !== "image" ? (
         <iframe
           src={siteUrl}
           title={`${title} live preview`}
@@ -209,7 +225,7 @@ export function SitePreviewFrame({
             alt={`${title} loading preview`}
             fallbackSrc={fallbackSrc}
             primarySrc={primarySrc}
-            className="block h-full w-full object-cover object-center"
+            className={`block h-full w-full ${coverImageOnMobile ? "object-cover object-center" : "object-contain object-top md:object-cover md:object-center"}`}
             onLoad={() => setFallbackLoaded(true)}
           />
         </div>

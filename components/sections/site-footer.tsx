@@ -18,11 +18,11 @@ export function SiteFooter() {
               alt="BabyOS logo"
               width={68}
               height={68}
-              className="h-auto w-[56px]"
+              className="h-auto w-[14.359vw] md:w-[3.5vw]"
             />
           </div>
-          <div className="col-span-1 self-end grid min-w-0 max-w-full justify-items-end gap-0 overflow-hidden text-right text-[9px] leading-[1.02] md:hidden">
-            <p className="max-w-full break-words font-strong tracking-[-0.02em] text-black/35">© 2026 BabyOS / Internet Architect</p>
+          <div className="col-span-1 self-end grid min-w-0 max-w-full justify-items-end gap-0 overflow-hidden text-right text-[2.308vw] leading-[1.02] md:hidden">
+            <p className="max-w-full break-words font-strong tracking-[-0.046vw] text-black/35">© 2026 BabyOS / Internet Architect</p>
             <div className="flex max-w-full flex-wrap justify-end gap-x-1 font-strong">
               {links.map((link, index) => (
                 <Link
@@ -37,11 +37,11 @@ export function SiteFooter() {
                 </Link>
               ))}
             </div>
-            <p className="max-w-full break-words font-strong tracking-[-0.02em] text-black/35">
+            <p className="max-w-full break-words font-strong tracking-[-0.046vw] text-black/35">
               Development by BabyOS in 3 days - just saying
             </p>
           </div>
-          <p className="hidden font-strong tracking-[-0.02em] text-black/35 md:block">© 2026 BabyOS / Internet Architect</p>
+          <p className="hidden font-strong tracking-[-0.016vw] text-black/35 md:block">© 2026 BabyOS / Internet Architect</p>
           <div className="hidden items-end justify-center font-strong md:flex">
             {links.map((link, index) => (
               <Link
@@ -56,7 +56,7 @@ export function SiteFooter() {
               </Link>
             ))}
           </div>
-          <p className="hidden font-strong tracking-[-0.02em] text-black/35 md:block">Development by BabyOS in 3 days - just saying</p>
+          <p className="hidden font-strong tracking-[-0.016vw] text-black/35 md:block">Development by BabyOS in 3 days - just saying</p>
         </div>
       </div>
     </footer>

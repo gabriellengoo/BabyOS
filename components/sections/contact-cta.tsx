@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/reveal";
 export function ContactCta() {
   return (
     <section className="px-5 py-12 md:px-8">
-      <Reveal className="mx-auto max-w-[1600px] border-t border-black/10 pt-6">
+      <Reveal className="mx-auto max-w-[100vw] border-t border-black/10 pt-6">
         <div className="grid gap-6 md:grid-cols-[1fr_1fr]">
           <div className="space-y-4">
             <p className="type-fine text-black/45">Contact</p>

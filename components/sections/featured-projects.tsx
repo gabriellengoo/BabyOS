@@ -12,7 +12,7 @@ export function FeaturedProjects() {
 
   return (
     <section className="px-5 py-10 md:px-8">
-      <div className="mx-auto grid max-w-[1700px] gap-6 xl:grid-cols-[320px_1fr]">
+      <div className="mx-auto grid max-w-[100vw] gap-6 xl:grid-cols-[20vw_1fr]">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}

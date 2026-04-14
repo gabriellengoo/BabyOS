@@ -13,7 +13,7 @@ export function FloatingDock() {
   const pathname = usePathname() ?? "";
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden h-[42px] text-black md:block">
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden h-[2.625vw] text-black md:block">
       <div className="h-full px-2 pt-2">
         <div className="grid h-full grid-cols-1 gap-3 items-start md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)]">
           <div />

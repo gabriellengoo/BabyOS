@@ -9,7 +9,7 @@ type PageIntroProps = {
 export function PageIntro({ eyebrow, title, description }: PageIntroProps) {
   return (
     <section className="border-b border-black/10 px-5 pb-8 pt-28 md:px-8 md:pt-32">
-      <Reveal className="mx-auto grid max-w-[1600px] gap-8 md:grid-cols-[1.2fr_0.8fr]">
+      <Reveal className="mx-auto grid max-w-[100vw] gap-8 md:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-4">
           <p className="type-fine text-black/45">{eyebrow}</p>
           <h1 className="type-large max-w-5xl font-bold">{title}</h1>

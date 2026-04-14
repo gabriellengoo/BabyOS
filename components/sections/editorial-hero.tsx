@@ -11,6 +11,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { SitePreviewFrame } from "@/components/ui/site-preview-frame";
+import { LenisScroll } from "@/components/ui/lenis-scroll";
 import { aiVideos } from "@/lib/ai-videos";
 import { projects } from "@/lib/projects";
 
@@ -177,7 +178,7 @@ export function EditorialHero() {
         aiHoverActive ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      <div className="grid h-full grid-cols-1 gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)] md:grid-rows-1">
+      <div className="grid h-full grid-cols-1 grid-rows-[52svh_minmax(0,1fr)] gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)] md:grid-rows-1">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -192,7 +193,7 @@ export function EditorialHero() {
                 src={hoveredAiVideo.embedUrl}
                 title={`${hoveredAiVideo.title} preview`}
                 allow="autoplay; fullscreen; picture-in-picture"
-                className="absolute inset-x-0 bottom-0 top-5 h-[calc(100%-1.25rem)] w-full border-0 md:top-8 md:h-[calc(100%-2rem)]"
+                className="absolute inset-x-0 bottom-0 top-5 h-[calc(100%-5.128vw)] w-full border-0 md:top-8 md:h-[calc(100%-2vw)]"
               />
             </div>
           ) : null}
@@ -224,18 +225,19 @@ export function EditorialHero() {
                     setHoveredSlug(null);
                     document.body.style.backgroundColor = ""; // Reset background
                   }}
-                  className={`group relative block h-[108svh] overflow-hidden bg-[#f3f3f3] transition-[opacity,transform] duration-700 ease-out first:mt-0 ${
+                  className={`group relative block h-[52svh] overflow-hidden bg-[#f3f3f3] transition-[opacity,transform] duration-700 ease-out first:mt-0 md:h-[108svh] ${
                     index === 0 ? "" : "mt-3"
                   } ${dimmed ? "opacity-[0.16]" : "opacity-100"}`}
                 >
-                  <div className="absolute inset-0 scale-[1.01]">
+                  <div className="absolute inset-0 md:scale-[1.01]">
                     <SitePreviewFrame
                       title={project.title}
                       siteUrl={project.siteUrl}
                       fallbackSrc={project.fallbackImage}
                       primarySrc={project.previewImage}
                       preferImage={project.preferImagePreview}
-                      className="absolute inset-0 h-auto w-full"
+                      coverImageOnMobile
+                      className="absolute inset-0 h-full w-full"
                     />
                   </div>
                 </Link>
@@ -248,11 +250,14 @@ export function EditorialHero() {
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: 0.32 }}
-          className={`scrollbar-none relative z-10 min-h-0 overflow-y-auto py-3 uppercase transition-colors duration-500 md:py-4 ${
+          className={`relative z-10 min-h-0 overflow-hidden py-3 uppercase transition-colors duration-500 md:py-4 ${
             aiHoverActive ? "text-white" : "text-black"
           }`}
         >
-          <div className="grid h-full gap-3 pb-[56px]">
+          <LenisScroll
+            className="scrollbar-none h-full overflow-y-auto"
+            contentClassName="grid h-full gap-3 pb-[14.359vw] md:pb-[3.5vw]"
+          >
             <div className="grid content-start justify-items-center gap-x-8 gap-y-7 overflow-visible pt-1 text-center md:grid-cols-2 md:justify-items-start md:text-left xl:grid-cols-3">
               {projects.map((project, index) => {
                 const focused = emphasisSlug === project.slug;
@@ -280,22 +285,22 @@ export function EditorialHero() {
                       focusProject(project.slug);
                     }}
                     onBlur={() => setHoveredSlug(null)}
-                    className={`w-full max-w-[22rem] uppercase transition-opacity duration-700 ease-out md:max-w-none ${
+                    className={`w-full max-w-[90.256vw] uppercase transition-opacity duration-700 ease-out md:max-w-none ${
                       dimmed ? "opacity-[0.16]" : focused ? "opacity-100" : "opacity-[0.88]"
                     }`}
                   >
-                    <p className="font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem]">
+                    <p className="font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                       {String(index + 1).padStart(3, "0")}
                     </p>
-                    <p className="mt-0.5 font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem]">
+                    <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                       {project.title.toUpperCase()}
                     </p>
-                    <p className={`mt-0.5 font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem] ${
+                    <p className={`mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw] ${
                       aiHoverActive ? "text-white" : "text-black"
                     }`}>
                       {formatUrl(project.siteUrl).toUpperCase()}
                     </p>
-                    <p className={`mt-0.5 normal-case text-[0.62rem] leading-[0.9] opacity-55 md:text-[0.54rem] ${
+                    <p className={`mt-0.5 normal-case text-[2.544vw] leading-[0.9] opacity-55 md:text-[0.594vw] ${
                       aiHoverActive ? "text-white" : "text-black"
                     }`}>
                       {getProjectLabel(project.category)}
@@ -303,8 +308,8 @@ export function EditorialHero() {
                   </Link>
                 );
               })}
-              <div className="w-full max-w-[22rem] md:max-w-none md:col-span-2 xl:col-span-1">
-                <p className="font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem]">
+              <div className="w-full max-w-[90.256vw] md:max-w-none md:col-span-2 xl:col-span-1">
+                <p className="font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                   AI
                 </p>
                 <div className="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2 xl:grid-cols-1">
@@ -315,9 +320,11 @@ export function EditorialHero() {
                       ((hoveredAiLabel != null && !focused) || hoveredSlug != null);
 
                     return (
-                      <button
+                      <a
                         key={video.id}
-                        type="button"
+                        href={video.vimeoUrl}
+                        target="_blank"
+                        rel="noreferrer"
                         onMouseEnter={() => {
                           if (!canHover) return;
                           setHoveredSlug(null);
@@ -332,35 +339,34 @@ export function EditorialHero() {
                           setHoveredAiLabel(video.id);
                         }}
                         onBlur={() => setHoveredAiLabel(null)}
-                        onClick={() => window.dispatchEvent(new Event("open-ai-overlay"))}
                         className={`text-center transition-opacity duration-700 ease-out md:text-left ${
                           dimmed ? "opacity-[0.16]" : "opacity-100"
                         }`}
                       >
-                        <p className="font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem]">
+                        <p className="font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                           {String(index + 1).padStart(3, "0")}
                         </p>
-                        <p className="mt-0.5 font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem]">
+                        <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                           {video.title}
                         </p>
-                        <p className="mt-0.5 font-strong text-[0.62rem] leading-[0.9] md:text-[0.54rem]">
+                        <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                           {video.location.toUpperCase()}
                         </p>
-                        <p className="mt-0.5 text-[0.62rem] leading-[0.9] opacity-55 md:text-[0.54rem]">
+                        <p className="mt-0.5 text-[2.544vw] leading-[0.9] opacity-55 md:text-[0.594vw]">
                           {video.projectType}
                         </p>
-                      </button>
+                      </a>
                     );
                   })}
                 </div>
               </div>
             </div>
-          </div>
+          </LenisScroll>
         </motion.div>
       </div>
 
       <div
-        className={`absolute inset-x-0 bottom-0 z-20 h-[56px] transition-colors duration-500 ${
+        className={`absolute inset-x-0 bottom-0 z-20 h-[14.359vw] transition-colors duration-500 md:h-[3.5vw] ${
           aiHoverActive ? "bg-black text-white" : "bg-white text-black"
         }`}
       >
@@ -392,7 +398,7 @@ export function EditorialHero() {
                   setShowBabyPrompt(true);
                 }}
                 onMouseLeave={() => setShowBabyPrompt(false)}
-                className="nav-babyos-text font-test-sohne-fett text-[0.98rem] font-black leading-none tracking-[-0.08em] transition-opacity duration-500 md:ml-[27vw] md:text-[1.1rem] md:hover:opacity-5"
+                className="nav-babyos-text nav-babyos-text-home font-test-sohne-fett font-black leading-none transition-opacity duration-500 md:ml-[27vw] md:text-[1.1vw] md:tracking-[-0.088vw] md:hover:opacity-5"
               >
                 {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
               </a>
@@ -402,12 +408,12 @@ export function EditorialHero() {
               <br />
               operating worldwide.
             </div>
-            <div className="flex justify-end md:hidden">
+            <div className="flex w-full justify-end md:hidden">
               <a
                 href={BABY_OS_SPOTIFY_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="nav-babyos-text font-test-sohne-fett text-[0.98rem] font-black leading-none tracking-[-0.08em]"
+                className="nav-babyos-text nav-babyos-text-home block text-right font-test-sohne-fett text-[4.021vw] font-black leading-none tracking-[-0.321vw]"
               >
                 {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
               </a>

@@ -19,9 +19,9 @@ export default function Icon() {
           justifyContent: "center",
           background: "#000",
           color: "#fff",
-          fontSize: 18,
+          fontSize: "56.25vw",
           fontWeight: 700,
-          letterSpacing: "-0.08em",
+          letterSpacing: "-4.5vw",
           fontFamily: "Arial, Helvetica, sans-serif"
         }}
       >

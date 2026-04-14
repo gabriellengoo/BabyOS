@@ -13,7 +13,7 @@ export function SiteHeader() {
   const pathname = usePathname() ?? "";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 h-[42px] bg-white">
+    <header className="fixed inset-x-0 top-0 z-40 h-[18vw] bg-white md:h-[2.625vw]">
       <div className="h-full px-2 pt-2">
         <div className="grid h-full grid-cols-1 gap-3 items-start md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)]">
           <div className="flex items-center justify-between md:items-start md:justify-start">
@@ -23,7 +23,7 @@ export function SiteHeader() {
                 <br />
                 operating worldwide.
               </div>
-              <p className="nav-babyos-text font-test-sohne-fett text-[1.2rem] font-black leading-none tracking-[-0.08em] md:ml-[27vw] md:text-[1rem]">
+              <p className="nav-babyos-text nav-babyos-text-secondary font-test-sohne-fett text-[13vw] font-black leading-none tracking-[-1.04vw] md:ml-[27vw] md:text-[2vw] md:tracking-[-0.08vw]">
                 <span className="md:hidden">BabyOS</span>
                 <span className="hidden md:inline">BabyOS is typeing..</span>
               </p>
