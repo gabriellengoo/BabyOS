@@ -29,6 +29,28 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico"
+  },
+  openGraph: {
+    title: "babyOS is typeing..",
+    description: "Minimal portfolio for Gabrielle Ngoo, creative developer and creative technologist.",
+    url: "https://internetarchitect.online",
+    siteName: "babyOS",
+    images: [
+      {
+        url: "/public/images/site/logo.png",
+        width: 800,
+        height: 600,
+        alt: "babyOS Logo"
+      }
+    ],
+    locale: "en_US",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "babyOS is typeing..",
+    description: "Minimal portfolio for Gabrielle Ngoo, creative developer and creative technologist.",
+    images: ["/public/images/site/logo.png"]
   }
 };
 
