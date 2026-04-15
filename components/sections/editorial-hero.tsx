@@ -22,6 +22,13 @@ const BABY_OS_SPOTIFY_URL =
   "https://open.spotify.com/playlist/3MhEFRPMJYjJEoL6fEJupW?si=EUEznE8qTOyZRsHNqP03Xw";
 const BABY_OS_SPOTIFY_EMBED_URL =
   "https://open.spotify.com/embed/playlist/3MhEFRPMJYjJEoL6fEJupW?utm_source=generator&theme=0&autoplay=1";
+const MOBILE_DARK_FOOTER_SLUGS = new Set([
+  "tuff-cyan",
+  "tasc-fashion-ai",
+  "distant-realities",
+  "morning-bot",
+  "ancestors-community-sound"
+]);
 
 function formatUrl(url: string) {
   return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -117,6 +124,8 @@ export function EditorialHero() {
   const emphasisSlug = hoveredSlug ?? activeProject.slug;
   const aiHoverActive = hoveredAiLabel != null;
   const hoveredAiVideo = aiVideos.find((video) => video.id === hoveredAiLabel) ?? null;
+  const mobileBannerUsesLightText =
+    !aiHoverActive && MOBILE_DARK_FOOTER_SLUGS.has(emphasisSlug);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -191,7 +200,15 @@ export function EditorialHero() {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)] md:gap-0">
           <div className="hidden md:block" />
           <div className={`home-babyos-banner-wrap ${aiHoverActive ? "home-babyos-banner-wrap-ai" : ""}`}>
-            <p className={`home-babyos-banner font-test-sohne-fett font-black ${aiHoverActive ? "home-babyos-banner-ai" : ""}`}>
+            <p
+              className={`home-babyos-banner font-test-sohne-fett font-black ${
+                aiHoverActive
+                  ? "home-babyos-banner-ai"
+                  : mobileBannerUsesLightText
+                    ? "home-babyos-banner-mobile-light"
+                    : ""
+              }`}
+            >
               BabyOS
             </p>
           </div>
@@ -339,7 +356,11 @@ export function EditorialHero() {
                 );
               })}
               <div className="w-full max-w-[90.256vw] md:max-w-none md:col-span-2 xl:col-span-1">
-                <p className="font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
+                <p
+                  className={`font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw] ${
+                    aiHoverActive ? "text-white/35" : "text-black/20"
+                  }`}
+                >
                   Artificial Intelligence
                 </p>
                 <div className="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2 xl:grid-cols-1">

@@ -249,6 +249,10 @@ img {
 }
 
 @media (max-width: 900px) {
+  .home-babyos-banner-mobile-light {
+    color: #fff;
+  }
+
   .nav-babyos-text-secondary {
     font-size: 10vw;
     letter-spacing: -0.8vw;
