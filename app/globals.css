@@ -138,6 +138,19 @@ img {
   font-family: var(--font-test-sohne-buch), Arial, Helvetica, sans-serif;
 }
 
+@supports (-moz-appearance: none) {
+  :root {
+    --font-sans: Arial, Helvetica, sans-serif;
+  }
+
+  body,
+  .font-name,
+  .font-strong,
+  .font-test-sohne-buch {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
 .nav-babyos-text {
   font-size: var(--nav-babyos-font-size);
   letter-spacing: var(--nav-babyos-letter-spacing);
@@ -221,6 +234,21 @@ img {
   @supports not (-webkit-backdrop-filter: none) {
     background-image: url('/path-to-pixelated-image.png');
     background-size: cover;
+  }
+}
+
+.intro-transition-overlay {
+  background: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  will-change: transform, opacity;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .intro-transition-overlay {
+    background: #fff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 

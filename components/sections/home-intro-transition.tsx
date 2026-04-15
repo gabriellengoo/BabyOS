@@ -88,7 +88,7 @@ export function HomeIntroTransition({
           ? { duration: 0.01 }
           : { duration: EXIT_DURATION_S, ease: [0.76, 0, 0.24, 1] }
       }
-      className="pointer-events-auto fixed inset-0 z-[200] flex items-center justify-center bg-white/35 text-[#ff1493] backdrop-blur-md"
+      className="intro-transition-overlay pointer-events-auto fixed inset-0 z-[200] flex items-center justify-center text-[#ff1493]"
       onAnimationComplete={() => {
         if (phase === "exit") {
           setHidden(true);
