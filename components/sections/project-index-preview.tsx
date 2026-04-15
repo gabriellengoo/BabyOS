@@ -20,7 +20,11 @@ export function ProjectIndexPreview() {
                 <p className="type-small max-w-2xl text-black/65">{project.summary}</p>
               </div>
               <div className="flex items-center justify-between gap-4 md:block md:text-right">
-                <p className="type-fine text-black/45">{project.category}</p>
+                <p className="type-fine text-black/45">
+                  {project.usesArtificialIntelligence
+                    ? `${project.category} / Artificial Intelligence`
+                    : project.category}
+                </p>
                 <p className="type-fine text-black/45">{project.year}</p>
               </div>
             </Link>

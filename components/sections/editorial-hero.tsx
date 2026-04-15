@@ -20,21 +20,25 @@ const BABY_OS_TEXT = "BabyOS is typeing..";
 const BABY_OS_PROMPT = "vibe with babyOS?";
 const BABY_OS_SPOTIFY_URL =
   "https://open.spotify.com/playlist/3MhEFRPMJYjJEoL6fEJupW?si=EUEznE8qTOyZRsHNqP03Xw";
+const BABY_OS_SPOTIFY_EMBED_URL =
+  "https://open.spotify.com/embed/playlist/3MhEFRPMJYjJEoL6fEJupW?utm_source=generator&theme=0&autoplay=1";
 
 function formatUrl(url: string) {
   return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
-function getProjectLabel(category: (typeof projects)[number]["category"]) {
-  switch (category) {
+function getProjectLabel(project: (typeof projects)[number]) {
+  const aiSuffix = project.usesArtificialIntelligence ? " / Artificial Intelligence" : "";
+
+  switch (project.category) {
     case "Creative Development":
-      return "Creative Technology Project";
+      return `Creative Technology Project${aiSuffix}`;
     case "Client Work":
-      return "Client Website / Professional Project";
+      return `Client Website / Professional Project${aiSuffix}`;
     case "Experimental":
-      return "Experimental Web Project";
+      return `Experimental Web Project${aiSuffix}`;
     default:
-      return "Digital Project";
+      return `Digital Project${aiSuffix}`;
   }
 }
 
@@ -105,6 +109,7 @@ export function EditorialHero() {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [hoveredAiLabel, setHoveredAiLabel] = useState<string | null>(null);
   const [showBabyPrompt, setShowBabyPrompt] = useState(false);
+  const [showSpotifyDemo, setShowSpotifyDemo] = useState(false);
   const [canHover, setCanHover] = useState(false);
 
   const activeProject =
@@ -178,6 +183,33 @@ export function EditorialHero() {
         aiHoverActive ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
+      <div
+        className={`absolute inset-x-0 top-0 z-30 ${
+          aiHoverActive ? "text-white" : "text-black"
+        }`}
+      >
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)] md:gap-0">
+          <div className="hidden md:block" />
+          <div className={`home-babyos-banner-wrap ${aiHoverActive ? "home-babyos-banner-wrap-ai" : ""}`}>
+            <p className={`home-babyos-banner font-test-sohne-fett font-black ${aiHoverActive ? "home-babyos-banner-ai" : ""}`}>
+              BabyOS
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {showSpotifyDemo ? (
+        <div className="pointer-events-none absolute right-4 top-[4.8vw] z-30 hidden w-[22vw] overflow-hidden rounded md:block">
+          <iframe
+            src={BABY_OS_SPOTIFY_EMBED_URL}
+            title="BabyOS Spotify playlist preview"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            className="pointer-events-auto block h-[8vw] w-full border-0"
+          />
+        </div>
+      ) : null}
+
       <div className="grid h-full grid-cols-1 grid-rows-[52svh_minmax(0,1fr)] gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)] md:grid-rows-1">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -255,8 +287,8 @@ export function EditorialHero() {
           }`}
         >
           <LenisScroll
-            className="scrollbar-none h-full overflow-y-auto"
-            contentClassName="grid h-full gap-3 pb-[14.359vw] md:pb-[3.5vw]"
+            className="scrollbar-none h-[calc(100%-14.359vw)] overflow-y-auto md:h-[calc(100%-3.5vw)]"
+            contentClassName="grid min-h-full gap-3 pb-[18vw] pt-[18vw] md:pb-[4vw] md:pt-[7.25vw]"
           >
             <div className="grid content-start justify-items-center gap-x-8 gap-y-7 overflow-visible pt-1 text-center md:grid-cols-2 md:justify-items-start md:text-left xl:grid-cols-3">
               {projects.map((project, index) => {
@@ -300,17 +332,15 @@ export function EditorialHero() {
                     }`}>
                       {formatUrl(project.siteUrl).toUpperCase()}
                     </p>
-                    <p className={`mt-0.5 normal-case text-[2.544vw] leading-[0.9] opacity-55 md:text-[0.594vw] ${
-                      aiHoverActive ? "text-white" : "text-black"
-                    }`}>
-                      {getProjectLabel(project.category)}
+                    <p className="mt-0.5 normal-case text-[2.544vw] leading-[0.9] text-black/55 md:text-[0.594vw]">
+                      {getProjectLabel(project)}
                     </p>
                   </Link>
                 );
               })}
               <div className="w-full max-w-[90.256vw] md:max-w-none md:col-span-2 xl:col-span-1">
                 <p className="font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
-                  AI
+                  Artificial Intelligence
                 </p>
                 <div className="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2 xl:grid-cols-1">
                   {aiVideos.map((video, index) => {
@@ -352,7 +382,7 @@ export function EditorialHero() {
                         <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                           {video.location.toUpperCase()}
                         </p>
-                        <p className="mt-0.5 text-[2.544vw] leading-[0.9] opacity-55 md:text-[0.594vw]">
+                        <p className="mt-0.5 normal-case text-[2.544vw] leading-[0.9] text-black/55 md:text-[0.594vw]">
                           {video.projectType}
                         </p>
                       </a>
@@ -396,24 +426,50 @@ export function EditorialHero() {
                 onMouseEnter={() => {
                   if (!canHover) return;
                   setShowBabyPrompt(true);
+                  setShowSpotifyDemo(true);
                 }}
-                onMouseLeave={() => setShowBabyPrompt(false)}
+                onMouseLeave={() => {
+                  setShowBabyPrompt(false);
+                  setShowSpotifyDemo(false);
+                }}
+                onFocus={() => {
+                  setShowBabyPrompt(true);
+                  setShowSpotifyDemo(true);
+                }}
+                onBlur={() => {
+                  setShowBabyPrompt(false);
+                  setShowSpotifyDemo(false);
+                }}
                 className="nav-babyos-text nav-babyos-text-home font-test-sohne-fett font-black leading-none transition-opacity duration-500 md:ml-[27vw] md:text-[1.1vw] md:tracking-[-0.088vw] md:hover:opacity-5"
               >
                 {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
               </a>
             </div>
             <div className="type-small font-strong uppercase leading-[0.96] md:hidden">
-              Based in London
-              <br />
-              operating worldwide.
+              <div className="flex items-center gap-4">
+                {footerLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="transition-opacity duration-500"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
             <div className="flex w-full justify-end md:hidden">
               <a
                 href={BABY_OS_SPOTIFY_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="nav-babyos-text nav-babyos-text-home block text-right font-test-sohne-fett text-[4.021vw] font-black leading-none tracking-[-0.321vw]"
+                onTouchStart={() => {
+                  setShowBabyPrompt(true);
+                }}
+                onTouchEnd={() => {
+                  setShowBabyPrompt(false);
+                }}
+                className="nav-babyos-text nav-babyos-text-home block whitespace-nowrap text-right font-test-sohne-fett text-[4.021vw] font-black leading-none tracking-[-0.321vw]"
               >
                 {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
               </a>

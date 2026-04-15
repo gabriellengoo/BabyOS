@@ -19,6 +19,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const [aiOpen, setAiOpen] = useState(false);
   const reduceMotion = useReducedMotion();
   const pathname = usePathname() ?? "";
+  const workDetailPage = isWorkDetailRoute(pathname);
   const previousPathRef = useRef<string | null>(null);
   const homePage = pathname === "/";
   const skipLoader =
@@ -56,8 +57,14 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         } ${aiOpen ? "page-obscured" : ""}`}
       >
         {homePage ? null : <SiteHeader />}
-        <main className={`relative z-10 flex-1 ${homePage ? "min-h-0 overflow-y-auto" : ""}`}>
+        <main
+          className={`relative z-10 flex-1 ${
+            homePage ? "min-h-0 overflow-y-auto" : workDetailPage ? "min-h-0 overflow-hidden" : ""
+          }`}
+        >
           {homePage ? (
+            children
+          ) : workDetailPage ? (
             children
           ) : (
             <LenisScroll className="scrollbar-transparent h-[100svh] overflow-y-auto" contentClassName="flex min-h-screen flex-col">

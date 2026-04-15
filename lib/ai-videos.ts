@@ -39,7 +39,7 @@ export const aiVideos: AiVideo[] = aiVideoLinks.map((vimeoUrl, index) => ({
   id: `ai-${String(index + 1).padStart(3, "0")}`,
   title: `AI ${String(index + 1).padStart(3, "0")}`,
   location: aiVideoLocations[index] ?? "Unknown Location",
-  projectType: "AI experimants",
+  projectType: "Artificial Intelligence",
   vimeoUrl,
   embedUrl: toVimeoEmbedUrl(vimeoUrl)
 }));

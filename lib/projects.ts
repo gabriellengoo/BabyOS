@@ -7,6 +7,7 @@ export type Project = {
   slug: string;
   title: string;
   category: ProjectCategory;
+  usesArtificialIntelligence?: boolean;
   year: string;
   client: string;
   summary: string;
@@ -192,6 +193,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     slug: "oshiozena",
     title: "Oshiozena",
     category: "Client Work",
+    usesArtificialIntelligence: true,
     year: "2026",
     client: "Oshiozena",
     summary:
@@ -202,13 +204,13 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     logoImage: "/images/projects/Oshiozenalogo.png",
     siteUrl: "https://www.oshiozena.com/",
     overview:
-      "A project exploring how fashion presentation, AI image workflows, and digital commerce can sit inside one visual system.",
+      "A client project exploring how fashion presentation, AI image workflows, and digital commerce can sit inside one visual system.",
     interesting:
       "The tension between product clarity and image atmosphere is what makes it strong.",
     process:
-      "This work combines design direction, frontend structure, and AI-assisted visual production.",
+      "This work combines design direction, frontend structure, and AI-assisted visual production, with all media made for the client using AI workflows.",
     impact:
-      "It points directly toward the kind of fashion and future-culture work Gabrielle is well placed to do more of.",
+      "It points directly toward the kind of fashion, client-facing AI, and future-culture work Gabrielle is well placed to do more of.",
     liveLabel: "Visit live site"
   },
   {
