@@ -19,6 +19,7 @@ export type Project = {
   logoImage?: string;
   preferImagePreview?: boolean;
   previewVideoUrl?: string;
+  previewVideoUrls?: string[];
   siteUrl: string;
   overview: string;
   interesting: string;
@@ -64,7 +65,10 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Next.js", "Tailwind", "Three.js", "TensorFlow", "Socket.io"],
     featured: true,
     previewImage: "/images/previews/morning.png",
-    preferImagePreview: true,
+    previewVideoUrls: [
+      "https://vimeo.com/1183804199?share=copy&fl=sv&fe=ci",
+      "https://vimeo.com/1183804196"
+    ],
     siteUrl: "https://bot.morning.fyi",
     overview:
       "A digital environment exploring the relationship between humans and machines through responsive states, realtime motion, and atmospheric interaction.",

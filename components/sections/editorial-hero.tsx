@@ -136,6 +136,14 @@ export function EditorialHero() {
     return () => mediaQuery.removeEventListener("change", update);
   }, []);
 
+  useEffect(() => {
+    document.body.style.backgroundColor = aiHoverActive ? "black" : "";
+
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, [aiHoverActive]);
+
   function updateActiveProject() {
     const container = scrollRef.current;
     if (!container) return;
@@ -188,9 +196,11 @@ export function EditorialHero() {
 
   return (
     <section
-      className="relative h-[100svh] overflow-hidden bg-white pb-3 pl-0 pr-0 pt-0 text-black transition-colors duration-500 md:pb-4 md:pl-0 md:pr-3"
+      className={`relative h-[100svh] overflow-hidden pb-3 pl-0 pr-0 pt-0 transition-colors duration-500 md:pb-4 md:pl-0 md:pr-3 ${
+        aiHoverActive ? "bg-black text-white" : "bg-white text-black"
+      }`}
     >
-      <div className="absolute inset-x-0 top-0 z-30 text-black">
+      <div className={`absolute inset-x-0 top-0 z-30 ${aiHoverActive ? "text-white" : "text-black"}`}>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)] md:gap-0">
           <div className="hidden md:block" />
           <div className={`home-babyos-banner-wrap ${aiHoverActive ? "home-babyos-banner-wrap-ai" : ""}`}>
@@ -226,10 +236,12 @@ export function EditorialHero() {
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-          className="relative min-h-0 overflow-hidden bg-white transition-colors duration-500"
+          className={`relative min-h-0 overflow-hidden transition-colors duration-500 ${
+            aiHoverActive ? "bg-black" : "bg-white"
+          }`}
         >
           {hoveredAiVideo ? (
-            <div className="absolute inset-0 z-20 bg-transparent">
+            <div className="absolute inset-0 z-20 bg-black">
               <iframe
                 src={hoveredAiVideo.embedUrl}
                 title={`${hoveredAiVideo.title} preview`}
@@ -259,22 +271,22 @@ export function EditorialHero() {
                     setHoveredSlug(project.slug);
                     setHoveredAiLabel(null);
                     focusProject(project.slug);
-                    document.body.style.backgroundColor = ""; // Safari fix
                   }}
                   onMouseLeave={() => {
                     if (!canHover) return;
                     setHoveredSlug(null);
-                    document.body.style.backgroundColor = ""; // Reset background
                   }}
                   className={`group relative block h-[52svh] overflow-hidden bg-transparent transition-[opacity,transform] duration-700 ease-out md:h-[100svh] ${
                     dimmed ? "opacity-[0.16]" : "opacity-100"
                   }`}
                 >
-                  <div className="absolute inset-0 md:scale-[1.01]">
+                  <div className="absolute inset-0">
                     <SitePreviewFrame
                       title={project.title}
                       siteUrl={project.siteUrl}
                       previewVideoUrl={project.previewVideoUrl}
+                      previewVideoUrls={project.previewVideoUrls}
+                      previewVideoFit="contain"
                       fallbackSrc={project.fallbackImage}
                       primarySrc={project.previewImage}
                       preferImage={project.preferImagePreview}
@@ -292,7 +304,9 @@ export function EditorialHero() {
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: 0.32 }}
-          className="relative z-10 min-h-0 overflow-hidden py-3 uppercase text-black transition-colors duration-500 md:py-4"
+          className={`relative z-10 min-h-0 overflow-hidden py-3 uppercase transition-colors duration-500 md:py-4 ${
+            aiHoverActive ? "text-white" : "text-black"
+          }`}
         >
           <LenisScroll
             className="scrollbar-none h-[calc(100%-14.359vw)] overflow-y-auto md:h-[calc(100%-3.5vw)]"
@@ -335,17 +349,23 @@ export function EditorialHero() {
                     <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                       {project.title.toUpperCase()}
                     </p>
-                    <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] text-black md:text-[0.594vw]">
+                    <p className={`mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw] ${
+                      aiHoverActive ? "text-white" : "text-black"
+                    }`}>
                       {formatUrl(project.siteUrl).toUpperCase()}
                     </p>
-                    <p className="mt-0.5 normal-case text-[2.544vw] leading-[0.9] text-black/55 md:text-[0.594vw]">
+                    <p className={`mt-0.5 normal-case text-[2.544vw] leading-[0.9] md:text-[0.594vw] ${
+                      aiHoverActive ? "text-white/55" : "text-black/55"
+                    }`}>
                       {getProjectLabel(project)}
                     </p>
                   </Link>
                 );
               })}
               <div className="w-full max-w-[90.256vw] md:max-w-none md:col-span-2 xl:col-span-1">
-                <p className="font-strong text-[2.544vw] leading-[0.9] text-black/20 md:text-[0.594vw]">
+                <p className={`font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw] ${
+                  aiHoverActive ? "text-white/35" : "text-black/20"
+                }`}>
                   Artificial Intelligence
                 </p>
                 <div className="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2 xl:grid-cols-1">
@@ -388,7 +408,9 @@ export function EditorialHero() {
                         <p className="mt-0.5 font-strong text-[2.544vw] leading-[0.9] md:text-[0.594vw]">
                           {video.location.toUpperCase()}
                         </p>
-                        <p className="mt-0.5 normal-case text-[2.544vw] leading-[0.9] text-black/55 md:text-[0.594vw]">
+                        <p className={`mt-0.5 normal-case text-[2.544vw] leading-[0.9] md:text-[0.594vw] ${
+                          aiHoverActive ? "text-white/55" : "text-black/55"
+                        }`}>
                           {video.projectType}
                         </p>
                       </a>
@@ -401,7 +423,11 @@ export function EditorialHero() {
         </motion.div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-20 h-[14.359vw] bg-white text-black transition-colors duration-500 md:h-[3.5vw]">
+      <div
+        className={`absolute inset-x-0 bottom-0 z-20 h-[14.359vw] transition-colors duration-500 md:h-[3.5vw] ${
+          aiHoverActive ? "bg-black text-white" : "bg-white text-black"
+        }`}
+      >
         <div className="h-full px-3 md:px-4">
           <div className="grid h-full grid-cols-[1fr_auto] items-end gap-3 md:grid-cols-[minmax(0,65vw)_minmax(0,1fr)]">
             <div className="hidden items-end md:flex md:pb-1">

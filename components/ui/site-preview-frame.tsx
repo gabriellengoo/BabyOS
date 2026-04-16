@@ -8,6 +8,8 @@ type SitePreviewFrameProps = {
   title: string;
   siteUrl: string;
   previewVideoUrl?: string;
+  previewVideoUrls?: string[];
+  previewVideoFit?: "cover" | "contain";
   fallbackSrc: string;
   primarySrc: string;
   preferImage?: boolean;
@@ -158,6 +160,8 @@ export function SitePreviewFrame({
   title,
   siteUrl,
   previewVideoUrl,
+  previewVideoUrls,
+  previewVideoFit = "cover",
   fallbackSrc,
   primarySrc,
   preferImage = false,
@@ -169,8 +173,17 @@ export function SitePreviewFrame({
   const [fallbackVisible, setFallbackVisible] = useState(preferImage);
   const [fallbackLoaded, setFallbackLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activePreviewVideoIndex, setActivePreviewVideoIndex] = useState(0);
   const timeoutRef = useRef<number | null>(null);
-  const previewUrl = previewVideoUrl ? toVimeoEmbedUrl(previewVideoUrl) : siteUrl;
+  const previewVideoList = previewVideoUrls?.length
+    ? previewVideoUrls
+    : previewVideoUrl
+      ? [previewVideoUrl]
+      : [];
+  const activePreviewVideoUrl = previewVideoList[activePreviewVideoIndex] ?? previewVideoList[0];
+  const previewUrl = activePreviewVideoUrl ? toVimeoEmbedUrl(activePreviewVideoUrl) : siteUrl;
+  const hasPreviewVideo = previewVideoList.length > 0;
+  const shouldPreferImage = preferImage || (!hasPreviewVideo && preferImageOnMobile && isMobile);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -182,8 +195,24 @@ export function SitePreviewFrame({
   }, []);
 
   useEffect(() => {
-    const shouldPreferImage = preferImage || (preferImageOnMobile && isMobile);
+    setActivePreviewVideoIndex(0);
+  }, [previewVideoUrls, previewVideoUrl]);
 
+  useEffect(() => {
+    if (previewVideoList.length < 2 || shouldPreferImage) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActivePreviewVideoIndex((currentIndex) => (currentIndex + 1) % previewVideoList.length);
+    }, 6000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [previewVideoList, shouldPreferImage]);
+
+  useEffect(() => {
     setFallbackLoaded(false);
 
     if (shouldPreferImage) {
@@ -206,7 +235,7 @@ export function SitePreviewFrame({
         window.clearTimeout(timeoutRef.current);
       }
     };
-  }, [isMobile, preferImage, preferImageOnMobile, previewUrl]);
+  }, [shouldPreferImage, previewUrl]);
 
   useEffect(() => {
     if (fallbackVisible && fallbackLoaded) {
@@ -216,15 +245,21 @@ export function SitePreviewFrame({
 
   return (
     <div className={className}>
-      {!(preferImage || (preferImageOnMobile && isMobile)) && mode !== "image" ? (
+      {!shouldPreferImage && mode !== "image" ? (
         <div className="absolute inset-0 overflow-hidden bg-transparent">
           <iframe
             src={previewUrl}
-            title={previewVideoUrl ? `${title} video preview` : `${title} live preview`}
+            title={hasPreviewVideo ? `${title} video preview` : `${title} live preview`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            allow={previewVideoUrl ? "autoplay; fullscreen; picture-in-picture" : undefined}
-            className={`pointer-events-none absolute left-1/2 top-1/2 border-0 ${previewVideoUrl ? "h-[116%] w-[116%] -translate-x-1/2 -translate-y-1/2" : "inset-0 h-full w-full -translate-x-1/2 -translate-y-1/2"}`}
+            allow={hasPreviewVideo ? "autoplay; fullscreen; picture-in-picture" : undefined}
+            className={`pointer-events-none absolute left-1/2 top-1/2 border-0 ${
+              hasPreviewVideo
+                ? previewVideoFit === "contain"
+                  ? "h-full w-full -translate-x-1/2 -translate-y-1/2"
+                  : "h-[140%] w-[140%] -translate-x-1/2 -translate-y-[56%]"
+                : "inset-0 h-full w-full -translate-x-1/2 -translate-y-1/2"
+            }`}
             onLoad={() => {
               if (timeoutRef.current != null) {
                 window.clearTimeout(timeoutRef.current);
@@ -236,7 +271,7 @@ export function SitePreviewFrame({
         </div>
       ) : null}
 
-      {(preferImage || fallbackVisible || mode === "loading") && mode !== "iframe" ? (
+      {(shouldPreferImage || fallbackVisible || mode === "loading") && mode !== "iframe" ? (
         <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
           <ProjectImage
             alt={`${title} loading preview`}

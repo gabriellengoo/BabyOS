@@ -34,8 +34,10 @@ export function ProjectDetail({ project }: { project: Project }) {
                 title={project.title}
                 siteUrl={project.siteUrl}
                 previewVideoUrl={project.previewVideoUrl}
+                previewVideoUrls={project.previewVideoUrls}
                 fallbackSrc={project.fallbackImage}
                 primarySrc={project.previewImage}
+                previewVideoFit="contain"
                 preferImage={project.preferImagePreview}
                 className="absolute inset-0 h-full w-full"
               />
@@ -171,10 +173,12 @@ export function ProjectDetail({ project }: { project: Project }) {
                 title={project.title}
                 siteUrl={project.siteUrl}
                 previewVideoUrl={project.previewVideoUrl}
+                previewVideoUrls={project.previewVideoUrls}
                 fallbackSrc={project.fallbackImage}
                 primarySrc={project.previewImage}
                 preferImage={project.preferImagePreview}
-                className="absolute inset-0 h-full w-full"
+                previewVideoFit="contain"
+                className="absolute  inset-0 h-full w-full"
               />
               {!reduceMotion ? (
                 <motion.div
