@@ -7,6 +7,7 @@ import { ProjectImage } from "@/components/ui/project-image";
 type SitePreviewFrameProps = {
   title: string;
   siteUrl: string;
+  previewVideoUrl?: string;
   fallbackSrc: string;
   primarySrc: string;
   preferImage?: boolean;
@@ -14,6 +15,17 @@ type SitePreviewFrameProps = {
   coverImageOnMobile?: boolean;
   className?: string;
 };
+
+function toVimeoEmbedUrl(url: string) {
+  const match = url.match(/vimeo\.com\/(\d+)/);
+  const id = match?.[1] ?? "";
+
+  if (!id) {
+    return url;
+  }
+
+  return `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&autopause=0&title=0&byline=0&portrait=0`;
+}
 
 function drawImageCover(
   context: CanvasRenderingContext2D,
@@ -145,6 +157,7 @@ function PixelatedLoadingPreview({
 export function SitePreviewFrame({
   title,
   siteUrl,
+  previewVideoUrl,
   fallbackSrc,
   primarySrc,
   preferImage = false,
@@ -157,6 +170,7 @@ export function SitePreviewFrame({
   const [fallbackLoaded, setFallbackLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const timeoutRef = useRef<number | null>(null);
+  const previewUrl = previewVideoUrl ? toVimeoEmbedUrl(previewVideoUrl) : siteUrl;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -192,7 +206,7 @@ export function SitePreviewFrame({
         window.clearTimeout(timeoutRef.current);
       }
     };
-  }, [isMobile, preferImage, preferImageOnMobile, siteUrl]);
+  }, [isMobile, preferImage, preferImageOnMobile, previewUrl]);
 
   useEffect(() => {
     if (fallbackVisible && fallbackLoaded) {
@@ -203,20 +217,23 @@ export function SitePreviewFrame({
   return (
     <div className={className}>
       {!(preferImage || (preferImageOnMobile && isMobile)) && mode !== "image" ? (
-        <iframe
-          src={siteUrl}
-          title={`${title} live preview`}
-          loading="lazy" // Added lazy loading for optimization
-          referrerPolicy="no-referrer-when-downgrade"
-          className="pointer-events-none absolute inset-0 h-full w-full border-0"
-          onLoad={() => {
-            if (timeoutRef.current != null) {
-              window.clearTimeout(timeoutRef.current);
-              timeoutRef.current = null;
-            }
-            setMode("iframe");
-          }}
-        />
+        <div className="absolute inset-0 overflow-hidden bg-transparent">
+          <iframe
+            src={previewUrl}
+            title={previewVideoUrl ? `${title} video preview` : `${title} live preview`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allow={previewVideoUrl ? "autoplay; fullscreen; picture-in-picture" : undefined}
+            className={`pointer-events-none absolute left-1/2 top-1/2 border-0 ${previewVideoUrl ? "h-[116%] w-[116%] -translate-x-1/2 -translate-y-1/2" : "inset-0 h-full w-full -translate-x-1/2 -translate-y-1/2"}`}
+            onLoad={() => {
+              if (timeoutRef.current != null) {
+                window.clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+              }
+              setMode("iframe");
+            }}
+          />
+        </div>
       ) : null}
 
       {(preferImage || fallbackVisible || mode === "loading") && mode !== "iframe" ? (

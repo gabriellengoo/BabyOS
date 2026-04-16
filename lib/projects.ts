@@ -18,6 +18,7 @@ export type Project = {
   fallbackImage: string;
   logoImage?: string;
   preferImagePreview?: boolean;
+  previewVideoUrl?: string;
   siteUrl: string;
   overview: string;
   interesting: string;
@@ -87,6 +88,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Nuxt.js", "Sanity", "Tailwind", "SCSS"],
     previewImage: "/images/previews/palazzo.png",
     logoImage: "/images/projects/palazzoeventilogo.jpg",
+    previewVideoUrl: "https://vimeo.com/1183754312",
     siteUrl: "https://palazzonew.vercel.app",
     overview:
       "A luxury-facing site built around imagery, quiet motion, and restraint rather than decorative excess.",
@@ -132,7 +134,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Creative direction, frontend development, AI-assisted experience design",
     tech: ["Next.js", "AI workflows", "Frontend systems", "Responsive design"],
     previewImage: "/images/projects/tasc.png",
-    preferImagePreview: true,
+    previewVideoUrl: "https://vimeo.com/1183754046",
     siteUrl: "https://tasc-fashion.ai/",
     overview:
       "A fashion and AI-led web project built around visual presentation, editorial structure, and a more experimental digital tone.",
@@ -178,6 +180,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Research, web design, full-stack development",
     tech: ["Next.js", "React", "Sanity", "Tailwind", "P5.js"],
     previewImage: "/images/previews/distant.png",
+    previewVideoUrl: "https://vimeo.com/1183754051?fl=ip&fe=ec",
     siteUrl: "https://www.distant-realities.eu/",
     overview:
       "An agency site shaped around dimensional layouts, speculative visual references, and a more world-built tone.",
@@ -202,6 +205,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Next.js", "Content systems", "AI workflows", "Frontend architecture"],
     previewImage: "/images/previews/oshiozena.png",
     logoImage: "/images/projects/Oshiozenalogo.png",
+    previewVideoUrl: "https://vimeo.com/1183754047",
     siteUrl: "https://www.oshiozena.com/",
     overview:
       "A client project exploring how fashion presentation, AI image workflows, and digital commerce can sit inside one visual system.",
@@ -224,7 +228,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Frontend development, web design",
     tech: ["Next.js", "Tailwind", "Content structure"],
     previewImage: "/images/previews/gina.png",
-    preferImagePreview: true,
+    previewVideoUrl: "https://vimeo.com/1183760145",
     siteUrl: "https://ginacorrieri.com/",
     overview:
       "A clean artist-facing web presence focused on directness, legibility, and tone.",
@@ -270,6 +274,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Next.js", "Tailwind", "Responsive systems"],
     previewImage: "/images/previews/internetarchitect.png",
     logoImage: "/images/projects/logotuff.png",
+    previewVideoUrl: "https://vimeo.com/1183754052",
     siteUrl: "https://tuff-cyan.vercel.app/",
     overview:
       "A pared-back portfolio build designed to foreground the work with clean structure, pacing, and controlled image handling.",

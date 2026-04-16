@@ -33,8 +33,10 @@ export function ProjectDetail({ project }: { project: Project }) {
               <SitePreviewFrame
                 title={project.title}
                 siteUrl={project.siteUrl}
+                previewVideoUrl={project.previewVideoUrl}
                 fallbackSrc={project.fallbackImage}
                 primarySrc={project.previewImage}
+                preferImage={project.preferImagePreview}
                 className="absolute inset-0 h-full w-full"
               />
             </div>
@@ -168,8 +170,10 @@ export function ProjectDetail({ project }: { project: Project }) {
               <SitePreviewFrame
                 title={project.title}
                 siteUrl={project.siteUrl}
+                previewVideoUrl={project.previewVideoUrl}
                 fallbackSrc={project.fallbackImage}
                 primarySrc={project.previewImage}
+                preferImage={project.preferImagePreview}
                 className="absolute inset-0 h-full w-full"
               />
               {!reduceMotion ? (
