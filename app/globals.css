@@ -303,11 +303,6 @@ img {
   background-color: rgba(181, 181, 181, 0.2); /* Ensure fallback is consistent */
   border-radius: 0;
   transition: background-color 180ms ease, opacity 180ms ease;
-  /* Safari-specific fallback using pixelation */
-  @supports not (-webkit-backdrop-filter: none) {
-    background-image: url('/path-to-pixelated-image.png');
-    background-size: cover;
-  }
 }
 
 .surface-blur:hover {

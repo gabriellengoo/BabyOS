@@ -37,7 +37,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                 previewVideoUrls={project.previewVideoUrls}
                 fallbackSrc={project.fallbackImage}
                 primarySrc={project.previewImage}
-                previewVideoFit="contain"
+                previewVideoFit="cover"
                 preferImage={project.preferImagePreview}
                 className="absolute inset-0 h-full w-full"
               />
@@ -177,7 +177,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                 fallbackSrc={project.fallbackImage}
                 primarySrc={project.previewImage}
                 preferImage={project.preferImagePreview}
-                previewVideoFit="contain"
+                previewVideoFit="cover"
                 className="absolute  inset-0 h-full w-full"
               />
               {!reduceMotion ? (

@@ -165,7 +165,7 @@ export function WorkFilter({
           {visibleAiVideos.map((video, index) => (
             <RevealItem key={video.id} index={filteredProjects.length + index} rootRef={listWrapperRef}>
               <a
-                href={video.vimeoUrl}
+                href={video.videoUrl}
                 target="_blank"
                 rel="noreferrer"
                 onMouseEnter={() => {
@@ -187,7 +187,7 @@ export function WorkFilter({
                     src={video.embedUrl}
                     title={`${video.title} preview`}
                     allow="autoplay; fullscreen; picture-in-picture"
-                    className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.28] border-0"
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.28] border-0"
                     loading="lazy"
                   />
                 </div>

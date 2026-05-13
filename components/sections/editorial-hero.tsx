@@ -246,7 +246,7 @@ export function EditorialHero() {
                 src={hoveredAiVideo.embedUrl}
                 title={`${hoveredAiVideo.title} preview`}
                 allow="autoplay; fullscreen; picture-in-picture"
-                className="absolute inset-x-0 bottom-0 top-5 h-[calc(100%-5.128vw)] w-full border-0 md:top-8 md:h-[calc(100%-2vw)]"
+                className="pointer-events-none absolute left-1/2 top-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2 border-0"
               />
             </div>
           ) : null}
@@ -286,7 +286,7 @@ export function EditorialHero() {
                       siteUrl={project.siteUrl}
                       previewVideoUrl={project.previewVideoUrl}
                       previewVideoUrls={project.previewVideoUrls}
-                      previewVideoFit="contain"
+                      previewVideoFit="cover"
                       fallbackSrc={project.fallbackImage}
                       primarySrc={project.previewImage}
                       preferImage={project.preferImagePreview}
@@ -378,7 +378,7 @@ export function EditorialHero() {
                     return (
                       <a
                         key={video.id}
-                        href={video.vimeoUrl}
+                        href={video.videoUrl}
                         target="_blank"
                         rel="noreferrer"
                         onMouseEnter={() => {

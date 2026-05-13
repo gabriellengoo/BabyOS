@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ProjectImage } from "@/components/ui/project-image";
+import { toVideoEmbedUrl } from "@/lib/video-embed";
 
 type SitePreviewFrameProps = {
   title: string;
@@ -17,17 +18,6 @@ type SitePreviewFrameProps = {
   coverImageOnMobile?: boolean;
   className?: string;
 };
-
-function toVimeoEmbedUrl(url: string) {
-  const match = url.match(/vimeo\.com\/(\d+)/);
-  const id = match?.[1] ?? "";
-
-  if (!id) {
-    return url;
-  }
-
-  return `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&autopause=0&title=0&byline=0&portrait=0`;
-}
 
 function drawImageCover(
   context: CanvasRenderingContext2D,
@@ -175,13 +165,17 @@ export function SitePreviewFrame({
   const [isMobile, setIsMobile] = useState(false);
   const [activePreviewVideoIndex, setActivePreviewVideoIndex] = useState(0);
   const timeoutRef = useRef<number | null>(null);
-  const previewVideoList = previewVideoUrls?.length
-    ? previewVideoUrls
-    : previewVideoUrl
-      ? [previewVideoUrl]
-      : [];
+  const previewVideoList = useMemo(
+    () =>
+      previewVideoUrls?.length
+        ? previewVideoUrls
+        : previewVideoUrl
+          ? [previewVideoUrl]
+          : [],
+    [previewVideoUrl, previewVideoUrls]
+  );
   const activePreviewVideoUrl = previewVideoList[activePreviewVideoIndex] ?? previewVideoList[0];
-  const previewUrl = activePreviewVideoUrl ? toVimeoEmbedUrl(activePreviewVideoUrl) : siteUrl;
+  const previewUrl = activePreviewVideoUrl ? toVideoEmbedUrl(activePreviewVideoUrl) : siteUrl;
   const hasPreviewVideo = previewVideoList.length > 0;
   const shouldPreferImage = preferImage || (!hasPreviewVideo && preferImageOnMobile && isMobile);
 
@@ -246,7 +240,7 @@ export function SitePreviewFrame({
   return (
     <div className={className}>
       {!shouldPreferImage && mode !== "image" ? (
-        <div className="absolute inset-0 overflow-hidden bg-transparent">
+        <div className="absolute inset-0 overflow-hidden bg-white">
           <iframe
             src={previewUrl}
             title={hasPreviewVideo ? `${title} video preview` : `${title} live preview`}
@@ -256,8 +250,8 @@ export function SitePreviewFrame({
             className={`pointer-events-none absolute left-1/2 top-1/2 border-0 ${
               hasPreviewVideo
                 ? previewVideoFit === "contain"
-                  ? "h-full w-full -translate-x-1/2 -translate-y-1/2"
-                  : "h-[140%] w-[140%] -translate-x-1/2 -translate-y-[56%]"
+                  ? "h-[180%] w-[180%] -translate-x-1/2 -translate-y-1/2"
+                  : "h-[180%] w-[180%] -translate-x-1/2 -translate-y-1/2"
                 : "inset-0 h-full w-full -translate-x-1/2 -translate-y-1/2"
             }`}
             onLoad={() => {
