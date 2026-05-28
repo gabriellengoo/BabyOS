@@ -162,6 +162,7 @@ export function SitePreviewFrame({
   const [mode, setMode] = useState<"loading" | "iframe" | "image">("loading");
   const [fallbackVisible, setFallbackVisible] = useState(preferImage);
   const [fallbackLoaded, setFallbackLoaded] = useState(false);
+  const [previewFailed, setPreviewFailed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activePreviewVideoIndex, setActivePreviewVideoIndex] = useState(0);
   const timeoutRef = useRef<number | null>(null);
@@ -208,6 +209,7 @@ export function SitePreviewFrame({
 
   useEffect(() => {
     setFallbackLoaded(false);
+    setPreviewFailed(false);
 
     if (shouldPreferImage) {
       setFallbackVisible(true);
@@ -221,6 +223,7 @@ export function SitePreviewFrame({
       window.clearTimeout(timeoutRef.current);
     }
     timeoutRef.current = window.setTimeout(() => {
+      setPreviewFailed(true);
       setFallbackVisible(true);
     }, 8000);
 
@@ -232,10 +235,10 @@ export function SitePreviewFrame({
   }, [shouldPreferImage, previewUrl]);
 
   useEffect(() => {
-    if (fallbackVisible && fallbackLoaded) {
+    if ((fallbackVisible || previewFailed) && fallbackLoaded) {
       setMode("image");
     }
-  }, [fallbackLoaded, fallbackVisible]);
+  }, [fallbackLoaded, fallbackVisible, previewFailed]);
 
   return (
     <div className={className}>
@@ -260,6 +263,14 @@ export function SitePreviewFrame({
                 timeoutRef.current = null;
               }
               setMode("iframe");
+            }}
+            onError={() => {
+              if (timeoutRef.current != null) {
+                window.clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+              }
+              setPreviewFailed(true);
+              setFallbackVisible(true);
             }}
           />
         </div>
