@@ -65,10 +65,6 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Next.js", "Tailwind", "Three.js", "TensorFlow", "Socket.io"],
     featured: true,
     previewImage: "/images/previews/morning.png",
-    previewVideoUrls: [
-      "https://player.mediadelivery.net/play/659920/c6b86a99-a131-46eb-9646-92d29102cdc3",
-      "https://player.mediadelivery.net/play/659920/c9d517ed-e419-4b2a-9404-e2388147cb8e"
-    ],
     siteUrl: "https://bot.morning.fyi",
     overview:
       "A digital environment exploring the relationship between humans and machines through responsive states, realtime motion, and atmospheric interaction.",
@@ -92,7 +88,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Nuxt.js", "Sanity", "Tailwind", "SCSS"],
     previewImage: "/images/previews/palazzo.png",
     logoImage: "/images/projects/palazzoeventilogo.jpg",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/a811ba88-dd5f-4209-a5de-d3833fbcec84",
+    previewVideoUrl: "https://drive.google.com/file/d/1n7Pl2T5n_7zUWDc5j_isdgcl6JIzjdv0/view?usp=sharing",
     siteUrl: "https://palazzonew.vercel.app",
     overview:
       "A luxury-facing site built around imagery, quiet motion, and restraint rather than decorative excess.",
@@ -116,7 +112,6 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Nuxt.js", "Sanity", "Tailwind", "SCSS"],
     previewImage: "/images/previews/alwa.png",
     logoImage: "/images/projects/alwa-logo.svg",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/a51268c0-f8ad-464c-908c-eec8121b425c",
     siteUrl: "https://www.alwaproduction.co.uk",
     overview:
       "A site built to foreground visual work with as little friction as possible.",
@@ -139,7 +134,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Creative direction, frontend development, AI-assisted experience design",
     tech: ["Next.js", "AI workflows", "Frontend systems", "Responsive design"],
     previewImage: "/images/projects/tasc.png",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/ae8059a5-6a99-47db-a323-c7e0356557d7",
+    previewVideoUrl: "https://drive.google.com/file/d/1btYd7AxMcXRYyEIDjfBtYBalpjox1zET/view?usp=sharing",
     siteUrl: "https://tasc-fashion.ai/",
     overview:
       "A fashion and AI-led web project built around visual presentation, editorial structure, and a more experimental digital tone.",
@@ -163,7 +158,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Nuxt.js", "Sanity", "Tailwind", "SCSS"],
     previewImage: "/images/previews/henhouse.png",
     logoImage: "/images/projects/henhouselogo.jpeg",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/2798baea-0556-4aa2-a62f-f40ba2cc7e51",
+    previewVideoUrl: "https://drive.google.com/file/d/1Gbo_aSEgfxONkxpIxqct9MyBgt6ZYX1u/view?usp=sharing",
     siteUrl: "https://www.henhouselondon.co.uk",
     overview:
       "A quieter portfolio build where type, spacing, and image handling carry the identity.",
@@ -186,7 +181,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Research, web design, full-stack development",
     tech: ["Next.js", "React", "Sanity", "Tailwind", "P5.js"],
     previewImage: "/images/previews/distant.png",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/d8208b21-3b42-405e-b20d-d6fcf4831a1e",
+    previewVideoUrl: "https://drive.google.com/file/d/1Pk4mWtiyM4EVFdAO0Ri3Wy503TLkHZqT/view?usp=sharing",
     siteUrl: "https://www.distant-realities.eu/",
     overview:
       "An agency site shaped around dimensional layouts, speculative visual references, and a more world-built tone.",
@@ -211,7 +206,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Next.js", "Content systems", "AI workflows", "Frontend architecture"],
     previewImage: "/images/previews/oshiozena.png",
     logoImage: "/images/projects/Oshiozenalogo.png",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/2b9fc90f-9e11-4b50-b880-c700fb44fd38",
+    previewVideoUrl: "https://drive.google.com/file/d/1GVMQXzYWUIlFCYnQTQ05WgbLl2b5CHRz/view?usp=sharing",
     siteUrl: "https://www.oshiozena.com/",
     overview:
       "A client project exploring how fashion presentation, AI image workflows, and digital commerce can sit inside one visual system.",
@@ -234,7 +229,7 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Frontend development, web design",
     tech: ["Next.js", "Tailwind", "Content structure"],
     previewImage: "/images/previews/gina.png",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/1e0039f0-8b00-4483-a0e4-62e7937c8402",
+    previewVideoUrl: "https://drive.google.com/file/d/1xXDX8owsbsRB3eKBSNngkz8AGmii3aFG/view?usp=sharing",
     siteUrl: "https://ginacorrieri.com/",
     overview:
       "A clean artist-facing web presence focused on directness, legibility, and tone.",
@@ -257,7 +252,6 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     role: "Frontend development, web design",
     tech: ["Next.js", "Tailwind", "Responsive systems"],
     previewImage: "/images/previews/gomis.png",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/a1816420-3914-4b3e-a969-f1d9a82bb5cf",
     siteUrl: "https://gomis-trezise.vercel.app/",
     overview:
       "A minimal presentation system built to foreground work rather than interface decoration.",
@@ -281,7 +275,10 @@ const baseProjects: Omit<Project, "fallbackImage">[] = [
     tech: ["Next.js", "Tailwind", "Responsive systems"],
     previewImage: "/images/previews/internetarchitect.png",
     logoImage: "/images/projects/logotuff.png",
-    previewVideoUrl: "https://player.mediadelivery.net/play/659920/d8a59c8e-4eff-4a33-8be4-4878ad45f9e7",
+    previewVideoUrls: [
+      "https://drive.google.com/file/d/1NV4LxWFwAATtgXGmXO_3QdSUx0KXajFu/view?usp=sharing",
+      "https://drive.google.com/file/d/1wrxesUQmqwkhg7HexnE3VOtikxxSBkqP/view?usp=sharing"
+    ],
     siteUrl: "https://tuff-cyan.vercel.app/",
     overview:
       "A pared-back portfolio build designed to foreground the work with clean structure, pacing, and controlled image handling.",

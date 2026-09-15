@@ -31,9 +31,7 @@ export function HomeIntroTransition({
   const reduceMotion = useReducedMotion();
   const [phase, setPhase] = useState<"hold" | "exit">("hold");
   const [hidden, setHidden] = useState(false);
-  const [displayText, setDisplayText] = useState(
-    reduceMotion ? FINAL_TEXT : buildScrambledText(0)
-  );
+  const [displayText, setDisplayText] = useState(FINAL_TEXT);
 
   useEffect(() => {
     setHidden(false);

@@ -78,7 +78,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${testSohneFett.variable} ${testSohneBuch.variable}`} style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-      <body>
+      <body suppressHydrationWarning>
         <SiteShell>{children}</SiteShell>
         {/* <Analytics /> */}
       </body>

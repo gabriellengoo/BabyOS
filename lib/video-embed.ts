@@ -1,44 +1,28 @@
-const BUNNY_PREVIEW_PARAMS = {
-  autoplay: "true",
-  muted: "true",
-  loop: "true",
-  playsinline: "true",
-  preload: "true",
-  responsive: "true",
-  rememberPosition: "false",
-  showSpeed: "false",
-  showHeatmap: "false",
-  chromecast: "false",
-  disableAirplay: "true",
-  disableIosPlayer: "true",
-  compactControls: "true",
-  controls: "false"
-};
+function getGoogleDriveFileId(url: string) {
+  const filePathMatch = url.match(/drive\.google\.com\/file\/d\/([^/?#]+)/);
+  if (filePathMatch?.[1]) {
+    return filePathMatch[1];
+  }
+
+  const queryMatch = url.match(/[?&]id=([^&#]+)/);
+  if (url.includes("drive.google.com") && queryMatch?.[1]) {
+    return queryMatch[1];
+  }
+
+  return "";
+}
 
 export function toVideoEmbedUrl(url: string) {
-  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
-  const vimeoId = vimeoMatch?.[1] ?? "";
+  const driveFileId = getGoogleDriveFileId(url);
 
-  if (vimeoId) {
-    return `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0&title=0&byline=0&portrait=0`;
+  if (!driveFileId) {
+    return "";
   }
 
-  const bunnyMatch = url.match(
-    /player\.mediadelivery\.net\/(?:play|embed)\/([^/?#]+)\/([^/?#]+)/
-  );
+  const embedUrl = new URL(`https://drive.google.com/file/d/${driveFileId}/preview`);
+  embedUrl.searchParams.set("usp", "sharing");
+  embedUrl.searchParams.set("autoplay", "1");
+  embedUrl.searchParams.set("mute", "1");
 
-  if (bunnyMatch) {
-    const [, libraryId, videoId] = bunnyMatch;
-    const embedUrl = new URL(
-      `https://player.mediadelivery.net/embed/${libraryId}/${videoId}`
-    );
-
-    Object.entries(BUNNY_PREVIEW_PARAMS).forEach(([key, value]) => {
-      embedUrl.searchParams.set(key, value);
-    });
-
-    return embedUrl.toString();
-  }
-
-  return url;
+  return embedUrl.toString();
 }

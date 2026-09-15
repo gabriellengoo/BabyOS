@@ -176,9 +176,9 @@ export function SitePreviewFrame({
     [previewVideoUrl, previewVideoUrls]
   );
   const activePreviewVideoUrl = previewVideoList[activePreviewVideoIndex] ?? previewVideoList[0];
-  const previewUrl = activePreviewVideoUrl ? toVideoEmbedUrl(activePreviewVideoUrl) : siteUrl;
-  const hasPreviewVideo = previewVideoList.length > 0;
-  const shouldPreferImage = preferImage || (!hasPreviewVideo && preferImageOnMobile && isMobile);
+  const previewUrl = activePreviewVideoUrl ? toVideoEmbedUrl(activePreviewVideoUrl) : "";
+  const hasPreviewVideo = previewUrl.length > 0;
+  const shouldPreferImage = preferImage || !hasPreviewVideo || (preferImageOnMobile && isMobile);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -242,7 +242,7 @@ export function SitePreviewFrame({
 
   return (
     <div className={className}>
-      {!shouldPreferImage && mode !== "image" ? (
+      {hasPreviewVideo && !shouldPreferImage && mode !== "image" ? (
         <div className="absolute inset-0 overflow-hidden bg-white">
           <iframe
             src={previewUrl}
