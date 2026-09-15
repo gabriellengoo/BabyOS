@@ -19,12 +19,9 @@ export function toVideoEmbedUrl(url: string) {
     return "";
   }
 
-  const embedUrl = new URL(`https://drive.google.com/file/d/${driveFileId}/preview`);
-  embedUrl.searchParams.set("usp", "sharing");
-  embedUrl.searchParams.set("autoplay", "1");
-  embedUrl.searchParams.set("mute", "1");
-  embedUrl.searchParams.set("muted", "1");
-  embedUrl.searchParams.set("volume", "0");
+  const embedUrl = new URL("https://drive.google.com/uc");
+  embedUrl.searchParams.set("export", "download");
+  embedUrl.searchParams.set("id", driveFileId);
 
   return embedUrl.toString();
 }

@@ -242,11 +242,15 @@ export function EditorialHero() {
         >
           {hoveredAiVideo ? (
             <div className="absolute inset-0 z-20 bg-black">
-              <iframe
+              <video
                 src={hoveredAiVideo.embedUrl}
-                title={`${hoveredAiVideo.title} preview`}
-                allow="autoplay; fullscreen; picture-in-picture"
-                className="pointer-events-none absolute left-1/2 top-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2 border-0"
+                aria-label={`${hoveredAiVideo.title} preview`}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover"
               />
             </div>
           ) : null}

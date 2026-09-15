@@ -159,7 +159,7 @@ export function SitePreviewFrame({
   coverImageOnMobile = false,
   className
 }: SitePreviewFrameProps) {
-  const [mode, setMode] = useState<"loading" | "iframe" | "image">("loading");
+  const [mode, setMode] = useState<"loading" | "video" | "image">("loading");
   const [fallbackVisible, setFallbackVisible] = useState(preferImage);
   const [fallbackLoaded, setFallbackLoaded] = useState(false);
   const [previewFailed, setPreviewFailed] = useState(false);
@@ -244,25 +244,23 @@ export function SitePreviewFrame({
     <div className={className}>
       {hasPreviewVideo && !shouldPreferImage && mode !== "image" ? (
         <div className="absolute inset-0 overflow-hidden bg-white">
-          <iframe
+          <video
             src={previewUrl}
-            title={hasPreviewVideo ? `${title} video preview` : `${title} live preview`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allow={hasPreviewVideo ? "autoplay; fullscreen; picture-in-picture" : undefined}
-            className={`pointer-events-none absolute left-1/2 top-1/2 border-0 ${
-              hasPreviewVideo
-                ? previewVideoFit === "contain"
-                  ? "h-[180%] w-[180%] -translate-x-1/2 -translate-y-1/2"
-                  : "h-[180%] w-[180%] -translate-x-1/2 -translate-y-1/2"
-                : "inset-0 h-full w-full -translate-x-1/2 -translate-y-1/2"
+            aria-label={`${title} video preview`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className={`pointer-events-none absolute inset-0 h-full w-full ${
+              previewVideoFit === "contain" ? "object-contain" : "object-cover"
             }`}
-            onLoad={() => {
+            onLoadedData={() => {
               if (timeoutRef.current != null) {
                 window.clearTimeout(timeoutRef.current);
                 timeoutRef.current = null;
               }
-              setMode("iframe");
+              setMode("video");
             }}
             onError={() => {
               if (timeoutRef.current != null) {
@@ -276,7 +274,7 @@ export function SitePreviewFrame({
         </div>
       ) : null}
 
-      {(shouldPreferImage || fallbackVisible || mode === "loading") && mode !== "iframe" ? (
+      {(shouldPreferImage || fallbackVisible || mode === "loading") && mode !== "video" ? (
         <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
           <ProjectImage
             alt={`${title} loading preview`}

@@ -16,13 +16,16 @@ function AiVideoPanel({
 
   return (
     <section className="relative h-[100svh] w-[31vw] min-w-[31vw] flex-none overflow-hidden bg-black">
-      <iframe
+      <video
         src={embedUrl}
-        title={`AI video ${index + 1}`}
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2 border-0"
-        onLoad={() => setLoaded(true)}
+        aria-label={`AI video ${index + 1}`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        onLoadedData={() => setLoaded(true)}
       />
       {!loaded ? (
         <div className="pointer-events-none absolute inset-0 z-10 bg-black/40 backdrop-blur-md" />

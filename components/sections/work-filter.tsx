@@ -183,12 +183,15 @@ export function WorkFilter({
                 }`}
               >
                 <div className="pointer-events-none relative h-[13.846vw] w-full overflow-hidden md:h-[3.375vw]">
-                  <iframe
+                  <video
                     src={video.embedUrl}
-                    title={`${video.title} preview`}
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.28] border-0"
-                    loading="lazy"
+                    aria-label={`${video.title} preview`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.28] object-cover"
                   />
                 </div>
                 <div className="grid min-w-0 gap-0 [line-height:0.82!important]">
