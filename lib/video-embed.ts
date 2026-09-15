@@ -23,6 +23,8 @@ export function toVideoEmbedUrl(url: string) {
   embedUrl.searchParams.set("usp", "sharing");
   embedUrl.searchParams.set("autoplay", "1");
   embedUrl.searchParams.set("mute", "1");
+  embedUrl.searchParams.set("muted", "1");
+  embedUrl.searchParams.set("volume", "0");
 
   return embedUrl.toString();
 }
