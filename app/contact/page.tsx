@@ -6,7 +6,7 @@ const links = [
   {
     label: "Email",
     href: "mailto:gabriellengoo@hotmail.com",
-    value: "gabriellengoo@hotmail.com"
+    value: "Founder - gabriellengoo@hotmail.com"
   },
   {
     label: "GitHub",
@@ -31,7 +31,7 @@ const aboutText =
   "Gabrielle aka BabyOS part of The Internet Architects works between visual direction, interaction, and frontend implementation. Strongest when a project needs restraint, visual judgement, and technical control in the same place.";
 
 const aiPromoText =
-  "BabyOS now does AI Promotional videos too! 💅";
+  "AI production, advertisement and web design & development";
 
 const focusText =
   "Culture, fashion, AI-adjacent interfaces, editorial websites, and digital experiences that need more than default frontend patterns.";

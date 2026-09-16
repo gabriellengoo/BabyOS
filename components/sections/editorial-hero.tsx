@@ -17,6 +17,7 @@ import { projects } from "@/lib/projects";
 
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 const BABY_OS_TEXT = "BabyOS is typeing..";
+const BABY_OS_SERVICE_TEXT = "AI production, advertisement and web design & development";
 const BABY_OS_PROMPT = "vibe with babyOS?";
 const BABY_OS_SPOTIFY_URL =
   "https://open.spotify.com/playlist/3MhEFRPMJYjJEoL6fEJupW?si=EUEznE8qTOyZRsHNqP03Xw";
@@ -249,8 +250,11 @@ export function EditorialHero() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
                 className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                onCanPlay={(event) => {
+                  void event.currentTarget.play();
+                }}
               />
             </div>
           ) : null}
@@ -294,6 +298,7 @@ export function EditorialHero() {
                       fallbackSrc={project.fallbackImage}
                       primarySrc={project.previewImage}
                       preferImage={project.preferImagePreview}
+                      preferImageOnMobile={false}
                       coverImageOnMobile
                       className="absolute inset-0 h-full w-full"
                     />
@@ -440,7 +445,7 @@ export function EditorialHero() {
                   href="mailto:gabriellengoo@hotmail.com"
                   className="type-small font-strong transition-opacity duration-500 md:hover:opacity-5"
                 >
-                  gabriellengoo@hotmail.com
+                  Founder - gabriellengoo@hotmail.com
                 </a>
                 <a
                   href="https://instagram.com/is_this_gabrielle"
@@ -474,37 +479,50 @@ export function EditorialHero() {
                 }}
                 className="nav-babyos-text nav-babyos-text-home font-test-sohne-fett font-black leading-none transition-opacity duration-500 md:ml-[27vw] md:text-[1.1vw] md:tracking-[-0.088vw] md:hover:opacity-5"
               >
-                {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
+                {showBabyPrompt ? BABY_OS_PROMPT : BABY_OS_SERVICE_TEXT}
               </a>
             </div>
             <div className="type-small font-strong uppercase leading-[0.96] md:hidden">
-              <div className="flex items-center gap-4">
-                {footerLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="transition-opacity duration-500"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <div className="flex flex-col items-start gap-1">
+                <a
+                  href="mailto:gabriellengoo@hotmail.com"
+                  className="normal-case transition-opacity duration-500"
+                >
+                  Founder - gabriellengoo@hotmail.com
+                </a>
+                <div className="flex items-center gap-4">
+                  {footerLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="transition-opacity duration-500"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="flex w-full justify-end md:hidden">
-              <a
-                href={BABY_OS_SPOTIFY_URL}
-                target="_blank"
-                rel="noreferrer"
-                onTouchStart={() => {
-                  setShowBabyPrompt(true);
-                }}
-                onTouchEnd={() => {
-                  setShowBabyPrompt(false);
-                }}
-                className="nav-babyos-text nav-babyos-text-home block whitespace-nowrap text-right font-test-sohne-fett text-[4.021vw] font-black leading-none tracking-[-0.321vw]"
-              >
-                {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
-              </a>
+              <div className="grid justify-items-end gap-1 text-right">
+                <a
+                  href={BABY_OS_SPOTIFY_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  onTouchStart={() => {
+                    setShowBabyPrompt(true);
+                  }}
+                  onTouchEnd={() => {
+                    setShowBabyPrompt(false);
+                  }}
+                  className="nav-babyos-text nav-babyos-text-home block whitespace-nowrap text-right font-test-sohne-fett text-[4.021vw] font-black leading-none tracking-[-0.321vw]"
+                >
+                  {showBabyPrompt ? BABY_OS_PROMPT : <ScrambledFooterLabel reduceMotion={!!reduceMotion} />}
+                </a>
+                <p className="type-small font-strong normal-case leading-[0.96]">
+                  {BABY_OS_SERVICE_TEXT}
+                </p>
+              </div>
             </div>
             <div className="hidden font-strong items-end justify-between gap-6 pb-1 md:flex">
               <div className="type-small uppercase leading-[0.96]">

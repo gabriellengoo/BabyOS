@@ -225,7 +225,7 @@ export function SitePreviewFrame({
     timeoutRef.current = window.setTimeout(() => {
       setPreviewFailed(true);
       setFallbackVisible(true);
-    }, 8000);
+    }, 20000);
 
     return () => {
       if (timeoutRef.current != null) {
@@ -245,17 +245,26 @@ export function SitePreviewFrame({
       {hasPreviewVideo && !shouldPreferImage && mode !== "image" ? (
         <div className="absolute inset-0 overflow-hidden bg-white">
           <video
+            key={previewUrl}
             src={previewUrl}
             aria-label={`${title} video preview`}
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             className={`pointer-events-none absolute inset-0 h-full w-full ${
               previewVideoFit === "contain" ? "object-contain" : "object-cover"
             }`}
-            onLoadedData={() => {
+            onCanPlay={(event) => {
+              if (timeoutRef.current != null) {
+                window.clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+              }
+              setMode("video");
+              void event.currentTarget.play();
+            }}
+            onPlaying={() => {
               if (timeoutRef.current != null) {
                 window.clearTimeout(timeoutRef.current);
                 timeoutRef.current = null;

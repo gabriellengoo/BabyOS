@@ -190,8 +190,11 @@ export function WorkFilter({
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.28] object-cover"
+                    onCanPlay={(event) => {
+                      void event.currentTarget.play();
+                    }}
                   />
                 </div>
                 <div className="grid min-w-0 gap-0 [line-height:0.82!important]">
